@@ -89,7 +89,8 @@ MVPリリース
 - heroku
 - LINE Messaging API
 - LINE Login
-- gem
-    - machanize
-    - carrierwave
 - swiper
+- gem
+    - mechanize
+    - carrierwave
+
