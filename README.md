@@ -92,3 +92,7 @@ MVP リリース
 - gem
   - mechanize
   - carrierwave
+
+### ■ 画面遷移図
+Figma:
+https://www.figma.com/file/MX2a3IS2rmz5wuuGXRZqoP/Menu-memoire?type=design&node-id=0%3A1&mode=design&t=zJj6yb9UtS1DNmeR-1
