@@ -92,3 +92,6 @@ MVP リリース
 - gem
   - mechanize
   - carrierwave
+
+### ■ ER図
+https://gyazo.com/a4c34cdc1e7de388ac2f0202c590f600
