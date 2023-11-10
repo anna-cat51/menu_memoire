@@ -100,3 +100,28 @@ https://gyazo.com/a4c34cdc1e7de388ac2f0202c590f600
 ### ■ 画面遷移図
 
 Figma: https://www.figma.com/file/MX2a3IS2rmz5wuuGXRZqoP/Menu-memoire?type=design&node-id=0%3A1&mode=design&t=zJj6yb9UtS1DNmeR-1
+
+# README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+- Ruby version
+
+- System dependencies
+
+- Configuration
+
+- Database creation
+
+- Database initialization
+
+- How to run the test suite
+
+- Services (job queues, cache servers, search engines, etc.)
+
+- Deployment instructions
+
+- ...

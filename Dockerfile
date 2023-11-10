@@ -4,6 +4,10 @@ RUN apt-get update -qq \
  && rm -rf /var/lib/apt/lists/* \
  && npm install --global yarn
 RUN mkdir /myapp
+
+RUN yarn add esbuild
+RUN yarn add sass
+
 WORKDIR /myapp
 COPY Gemfile /myapp/Gemfile
 COPY Gemfile.lock /myapp/Gemfile.lock
