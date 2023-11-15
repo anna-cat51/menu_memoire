@@ -18,6 +18,14 @@ module.exports = {
       indigo: colors.indigo,
       red: colors.rose,
       yellow: colors.amber,
+      body: {
+        light: "#FFFCF8",
+        dark: "#FFF8EF",
+        main: "#F39800",
+        word: "#333333",
+      },
+      customOrange: "#F39800", // 押す前の色
+      customOrangeHover: "#cc7a00", // カーソルを合わせた後の色（暗めに設定）
     },
   },
 };
