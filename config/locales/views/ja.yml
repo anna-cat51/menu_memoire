@@ -2,7 +2,12 @@ ja:
   defaults:
     login: "ログイン"
     register: "登録"
+    repertory: "レパートリー"
+    profile: "プロフィール"
     logout: "ログアウト"
+    toppage: "トップページ"
+    about: "使い方"
+    Search: "検索"
   users:
     new:
       title: "ユーザー登録"
