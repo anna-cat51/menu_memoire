@@ -14,7 +14,9 @@
         LINEからいつでもレパートリーを検索できます<br>
         まずはLINE連携してログインしてください
         </p>
-        <%= image_tag 'btn_login_base.png', class:'block mx-auto' %>
+        <%= link_to user_line_omniauth_callback_path, class: 'block mx-auto' do %>
+          <%= image_tag 'btn_login_base.png' %>
+        <% end %>
       </div>
     </div>
   </div>
