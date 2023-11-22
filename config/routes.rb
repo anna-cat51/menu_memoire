@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   root "tops#index"
   devise_for :users, controllers: {
-  omniauth_callbacks: "omniauth_callbacks"
+  omniauth_callbacks: "omniauth_callbacks",
+  sessions: "sessions"
 }
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
