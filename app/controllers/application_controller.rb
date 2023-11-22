@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> adcbcae (Revert "Flash massages")
   add_flash_types :success, :info, :warning, :danger
@@ -26,4 +27,6 @@ class ApplicationController < ActionController::Base
 >>>>>>> 9108fe7 (Revert "Flash massages")
 =======
 >>>>>>> adcbcae (Revert "Flash massages")
+=======
+>>>>>>> 9108fe7 (Revert "Flash massages")
 end

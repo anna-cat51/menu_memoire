@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 <<<<<<< HEAD
+<<<<<<< HEAD
   root "tops#index"
 =======
 <<<<<<< HEAD
@@ -25,4 +26,10 @@ Rails.application.routes.draw do
   # root "articles#index"
 >>>>>>> 9108fe7 (Revert "Flash massages")
 >>>>>>> adcbcae (Revert "Flash massages")
+=======
+  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+
+  # Defines the root path route ("/")
+  # root "articles#index"
+>>>>>>> 9108fe7 (Revert "Flash massages")
 end

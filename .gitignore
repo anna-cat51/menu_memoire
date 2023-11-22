@@ -35,10 +35,13 @@
 
 /node_modules
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /.env
 
 /public/uploads
 /config/database.yml
+=======
+>>>>>>> 9108fe7 (Revert "Flash massages")
 =======
 >>>>>>> 9108fe7 (Revert "Flash massages")
