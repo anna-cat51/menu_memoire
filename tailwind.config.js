@@ -1,6 +1,7 @@
 module.exports = {
   content: [
 <<<<<<< HEAD
+<<<<<<< HEAD
     "./app/views/**/*.html.erb",
     "./app/helpers/**/*.rb",
     "./app/assets/stylesheets/**/*.css",
@@ -29,10 +30,15 @@ module.exports = {
   },
 };
 =======
+=======
+>>>>>>> 9108fe7 (Revert "Flash massages")
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
   ]
 }
+<<<<<<< HEAD
+>>>>>>> 9108fe7 (Revert "Flash massages")
+=======
 >>>>>>> 9108fe7 (Revert "Flash massages")
