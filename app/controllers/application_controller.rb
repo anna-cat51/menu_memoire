@@ -1,6 +1,9 @@
 class ApplicationController < ActionController::Base
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> adcbcae (Revert "Flash massages")
   add_flash_types :success, :info, :warning, :danger
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -18,6 +21,9 @@ class ApplicationController < ActionController::Base
   end
 =======
 >>>>>>> 9108fe7 (Revert "Flash massages")
+<<<<<<< HEAD
 =======
 >>>>>>> 9108fe7 (Revert "Flash massages")
+=======
+>>>>>>> adcbcae (Revert "Flash massages")
 end

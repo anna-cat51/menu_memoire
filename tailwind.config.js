@@ -2,6 +2,9 @@ module.exports = {
   content: [
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> adcbcae (Revert "Flash massages")
     "./app/views/**/*.html.erb",
     "./app/helpers/**/*.rb",
     "./app/assets/stylesheets/**/*.css",
@@ -30,8 +33,11 @@ module.exports = {
   },
 };
 =======
+<<<<<<< HEAD
 =======
 >>>>>>> 9108fe7 (Revert "Flash massages")
+=======
+>>>>>>> adcbcae (Revert "Flash massages")
     './app/views/**/*.html.erb',
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
@@ -39,6 +45,9 @@ module.exports = {
   ]
 }
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 9108fe7 (Revert "Flash massages")
 =======
+=======
+>>>>>>> adcbcae (Revert "Flash massages")
 >>>>>>> 9108fe7 (Revert "Flash massages")
