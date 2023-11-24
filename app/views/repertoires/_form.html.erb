@@ -2,74 +2,27 @@
   <!-- Author: FormBold Team -->
   <!-- Learn More: https://formbold.com -->
   <div class="mx-auto w-full max-w-[550px]">
-    <form action="https://formbold.com/s/FORM_ID" method="POST">
+    <%= form_with model: repertoire, local: true do |f| %>
       <div class="mb-5">
-        <label
-          for="name"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
+        <%= f.label :recipe_url, class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
           参考URL
-        </label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          placeholder="https://"
-          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
+        <% end %>
+        <%= f.text_field :recipe_url, placeholder: 'https://', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
       </div>
       <div class="mb-5">
-        <label
-          for="email"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
+        <%= f.label :name, class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
           料理名
-        </label>
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder="例: ハンバーグ"
-          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
+        <% end %>
+        <%= f.text_field :name, placeholder: '例: ハンバーグ', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
       </div>
       <div class="mb-5">
-        <label
-          for="subject"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          材料
-        </label>
-        <input
-          type="text"
-          name="subject"
-          id="subject"
-          placeholder="(,)カンマ区切りで入力"
-          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        />
+        <%= f.label class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
+          食材
+        <% end %>
+        <%= f.text_field :ingredient, placeholder: '(,)カンマ区切りで入力', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
       </div>
-      <div class="mb-5">
-        <label
-          for="message"
-          class="mb-3 block text-base font-medium text-[#07074D]"
-        >
-          メモ
-        </label>
-        <textarea
-          rows="4"
-          name="message"
-          id="message"
-          placeholder="作り方のコツなど"
-          class="w-full resize-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-        ></textarea>
+        <%=f.submit class: 'flex mx-auto mt-16 text-white bg-yellow-400 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg' %>
       </div>
-      <div>
-        <button
-          class="hover:shadow-form rounded-md bg-body-main py-3 px-8 text-base font-semibold text-white outline-none"
-        >
-          保存
-        </button>
-      </div>
-    </form>
+    <% end %>
   </div>
 </div>

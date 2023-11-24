@@ -8,7 +8,7 @@ class RepertoiresController < ApplicationController
   end
 
   def create
-    @repertoire = current_user.repertoires.build(repertoire_params)
+    @repertoire = current_user.repertoires.new(repertoire_params)
     if @repertoire.save
       redirect_to repertoires_path, success: '保存成功'
     else
@@ -18,12 +18,12 @@ class RepertoiresController < ApplicationController
   end
 
   def show
-    @repertoire = repertoire.find(params[:id])
+    @repertoire = Repertoire.find(params[:id])
+  end
 
-    private
+  private
 
-    def repertoire_params
-      params.require(:repertoire).permit(:name)
-    end
+  def repertoire_params
+    params.require(:repertoire).permit(:name, :recipe_url)
   end
 end
