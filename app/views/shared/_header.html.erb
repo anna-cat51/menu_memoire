@@ -28,7 +28,9 @@
           <li>
             <%= link_to repertoires_path, class: 'justify-between' do %>
               <%= t 'defaults.repertory' %>
-              <span class="badge">New</span>
+              <%= link_to new_repertoire_path do %>
+                <span class="badge">New</span>
+              <% end %>
             <% end %>
           </li>
           <li><%= link_to (t 'defaults.profile'), "#" %></li>
