@@ -22,16 +22,15 @@
         <% end %>
         <%= f.text_field :ingredient, placeholder: '(,)カンマ区切りで入力', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
       </div>
-      <div class="form-group">
-        <%= f.label :repertoire_image %>
-        <%= f.file_field :repertoire_image, class: 'form-control mb-3', accept: 'image/*' %>
-        <%= f.hidden_field :repertoire_image_cache %>
-      </div>
-      <div class='mt-3 mb-3'>
-        <%= image_tag repertoire.repertoire_image.url,
-                      id: 'preview',
-                      size: '300x200' %>
-      </div>
+      <div class="container" data-controller='preview'>
+        <div class="form-group">
+          <%= f.label :repertoire_image, 'Upload file', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
+          <%= f.file_field :repertoire_image, class: 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400', accept: 'image/*' %>
+          <%= f.hidden_field :repertoire_image_cache %>
+        </div>
+        <div class="mt-3 mb-3">
+          <%= image_tag repertoire.repertoire_image.url, id: 'preview', size: '300x200' %>
+        </div>
         <%=f.submit class: 'flex mx-auto mt-16 text-white bg-yellow-400 border-0 py-2 px-8 focus:outline-none hover:bg-yellow-600 rounded text-lg' %>
       </div>
     <% end %>
