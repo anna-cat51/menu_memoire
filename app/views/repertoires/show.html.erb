@@ -1,0 +1,22 @@
+<div class=" bg-body-dark py-6 sm:py-8 lg:py-12">
+  <div class="container mx-auto flex px-5 py-5 items-center justify-center flex-col">
+    <h1 class="title-font sm:text-4xl text-3xl mb-7 font-medium text-gray-900 text-center"><%= @repertoire.name %></h1>
+    <div class="lg:w-2/6 md:w-3/6 w-5/6 mb-10 object-cover object-center rounded-lg bg-gray-100 shadow-lg ">
+      <%= image_tag @repertoire.repertoire_image.url %>
+    </div>
+  </div>
+  <div class="mx-auto max-w-screen-md px-4 md:px-8">
+    <div class="card flex-auto bg-base-100 shadow-xl text-center">
+      <div class="card-body pt-8 pb-8">
+        <h3 class="title-font sm:text-2xl text-3xl mb-4 font-medium text-gray-900">材料</h3>
+        <li class="mb-8 leading-relaxed">
+        </li>
+      </div>
+    </div>
+  </div>
+  <% if @repertoire.recipe_url.present? %>
+    <div class="text-center mt-24 lg:w-2/3 w-full">
+      <p class="mb-8 leading-relaxed">参考にしたURL: <%= @repertoire.recipe_url %></p>
+    </div>
+  <% end %>
+</div>
