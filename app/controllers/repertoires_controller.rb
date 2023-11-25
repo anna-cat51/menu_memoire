@@ -13,7 +13,7 @@ class RepertoiresController < ApplicationController
       redirect_to repertoires_path, success: '保存成功'
     else
       flash.now['danger'] = '保存に失敗しました'
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
