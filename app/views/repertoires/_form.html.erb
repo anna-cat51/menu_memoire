@@ -3,6 +3,7 @@
   <!-- Learn More: https://formbold.com -->
   <div class="mx-auto w-full max-w-[550px]">
     <%= form_with model: repertoire, local: true do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
       <div class="mb-5">
         <%= f.label :recipe_url, class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
           参考URL
