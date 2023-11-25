@@ -24,6 +24,6 @@ class RepertoiresController < ApplicationController
   private
 
   def repertoire_params
-    params.require(:repertoire).permit(:name, :recipe_url)
+    params.require(:repertoire).permit(:name, :recipe_url, :repertoire_image, :repertoire_image_cache)
   end
 end
