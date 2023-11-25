@@ -21,6 +21,26 @@ class RepertoiresController < ApplicationController
     @repertoire = Repertoire.find(params[:id])
   end
 
+  def edit
+    @repertoire = current_user.repertoires.find(params[:id])
+  end
+
+  def update
+    @repertoire = current_user.repertoires.find(params[:id])
+    if @repertoire.update(repertoire_params)
+      redirect_to @repertoire, success: '編集に成功しました'
+    else
+      flash.now[:danger] = '編集に失敗しました'
+      render :edit
+    end
+  end
+
+  def destroy
+    @repertoire = current_user.repertoires.find(params[:id])
+    @repertoire.destroy!
+    redirect_to repertoires_path, success: '削除しました'
+  end
+
   private
 
   def repertoire_params
