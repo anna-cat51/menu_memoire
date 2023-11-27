@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("turbo:load", (event) => {
   const inputFile = document.querySelector("#repertoire_repertoire_image");
   const previewImage = document.querySelector("#preview");
 
@@ -12,4 +12,7 @@ document.addEventListener("DOMContentLoaded", (event) => {
       reader.readAsDataURL(file);
     }
   });
+
+  // 初回にもchangeイベントを発火させる
+  inputFile.dispatchEvent(new Event("change"));
 });
