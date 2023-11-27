@@ -84,3 +84,6 @@ gem 'faker'
 gem 'carrierwave', '~> 1.3'
 gem "mini_magick"
 gem 'pry-rails'
+
+gem 'line-bot-api'
+gem 'nokogiri'
