@@ -14,9 +14,9 @@
         <div class="card flex-auto bg-base-100 shadow-xl mt-14">
           <h2 class="mb-5 text-center text-xl font-semibold text-gray-800  mt-5 sm:text-2xl md:mb-4 md:text-left">材料</h2>
           <div class="ml-10">
-            <li class="mb-6 text-gray-500 sm:text-lg md:mb-8">玉ねぎ</li>
-            <li class="mb-6 text-gray-500 sm:text-lg md:mb-8">ひき肉</li>
-            <li class="mb-6 text-gray-500 sm:text-lg md:mb-8">卵</li>
+            <% @repertoire.ingredients.each do |ingredient| %>
+              <li class="mb-6 text-gray-500 sm:text-lg md:mb-8"><%= ingredient.name %></li>
+            <% end %>
           </div>
         </div>
       </div>
