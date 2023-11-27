@@ -1,4 +1,5 @@
 class RepertoiresController < ApplicationController
+  before_action :set_repertoire, only: %i[edit update destroy]
   def index
     @repertoires = Repertoire.all.includes(:user).order(created_at: :desc)
   end
@@ -9,10 +10,10 @@ class RepertoiresController < ApplicationController
 
   def create
     @repertoire = current_user.repertoires.new(repertoire_params)
-    if @repertoire.save
-      redirect_to repertoires_path, success: '保存成功'
+    if @repertoire.save_with_ingredients(ingredient_names: params.dig(:repertoire, :ingredient_names).split(',').uniq)
+      redirect_to repertoires_path(@repertoire), success: 'レパートリーを作成しました'
     else
-      flash.now['danger'] = '保存に失敗しました'
+      flash.now['danger'] = 'レパートリーを作成できませんでした'
       render :new, status: :unprocessable_entity
     end
   end
@@ -21,22 +22,19 @@ class RepertoiresController < ApplicationController
     @repertoire = Repertoire.find(params[:id])
   end
 
-  def edit
-    @repertoire = current_user.repertoires.find(params[:id])
-  end
+  def edit;end
 
   def update
-    @repertoire = current_user.repertoires.find(params[:id])
-    if @repertoire.update(repertoire_params)
-      redirect_to @repertoire, success: '編集に成功しました'
+    @repertoire.assign_attributes(repertoire_params)
+    if @repertoire.save_with_ingredients(ingredient_names: params.dig(:repertoire, :ingredient_names).split(',').uniq)
+      redirect_to repertoire_path(@repertoire), success: 'レパートリーを更新しました'
     else
-      flash.now[:danger] = '編集に失敗しました'
+      flash.now[:danger] = 'レパートリーを更新できませんでした'
       render :edit
     end
   end
 
   def destroy
-    @repertoire = current_user.repertoires.find(params[:id])
     @repertoire.destroy!
     redirect_to repertoires_path, success: '削除しました'
   end
@@ -45,5 +43,9 @@ class RepertoiresController < ApplicationController
 
   def repertoire_params
     params.require(:repertoire).permit(:name, :recipe_url, :repertoire_image, :repertoire_image_cache)
+  end
+
+  def set_repertoire
+    @repertoire = current_user.repertoires.find(params[:id])
   end
 end

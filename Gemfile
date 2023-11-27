@@ -83,3 +83,4 @@ gem 'rails-i18n'
 gem 'faker'
 gem 'carrierwave', '~> 1.3'
 gem "mini_magick"
+gem 'pry-rails'

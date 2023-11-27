@@ -17,10 +17,10 @@
         <%= f.text_field :name, placeholder: '例: ハンバーグ', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
       </div>
       <div class="mb-5">
-        <%= f.label class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
+        <%= f.label :ingredient_names, class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
           食材
         <% end %>
-        <%= f.text_field :ingredient, placeholder: '(,)カンマ区切りで入力', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
+        <%= f.text_field :ingredient_names, placeholder: '(,)カンマ区切りで入力', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
       </div>
       <div class="container" data-controller='preview' data-no-turbolink>
         <div class="form-group">
