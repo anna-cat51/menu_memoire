@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'scrapers/index'
   root "tops#index"
 
   devise_for :users, controllers: {
