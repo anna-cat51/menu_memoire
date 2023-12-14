@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'scrapers/index'
   root "tops#index"
 
   devise_for :users, controllers: {
@@ -13,4 +12,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   post '/callback', to: 'linebot#callback'
 
+  get '/scrapers/index', to: 'scrapers#index'
+  post '/scrapers/scrape', to: 'scrapers#scrape'
 end
