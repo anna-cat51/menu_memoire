@@ -2,14 +2,16 @@
   <!-- Author: FormBold Team -->
   <!-- Learn More: https://formbold.com -->
   <div class="mx-auto w-full max-w-[550px]">
+  <!-- スクレイピングフォーム -->
     <%= form_with url: scrape_repertoires_path, method: :post, local: true do |f| %>
-      参考URL
-      <%= f.text_field :recipe_url, placeholder: 'https://', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
-      <%= button_tag 'スクレイピング開始', id: 'scrape-button', class: 'btn btn-primary mb-3' %>
+      <div class="join flex mb-5">
+        <%= f.text_field :recipe_url, placeholder: 'https://', class: 'py-3 px-6 w-full input input-bordered join-item rounded-md border border-[#e0e0e0] bg-white text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
+        <%= button_tag '食材取得', id: 'scrape-button', class: "btn join-item text-white bg-yellow-400 border-0 focus:outline-none hover:bg-yellow-600 rounded text-md" %>
+      </div>
     <% end %>
-
+    <!-- レパートリー登録フォーム -->
     <%= form_with model: repertoire, local: true do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
+    <%= render 'shared/error_messages', object: f.object %>
       <div class="mb-5">
         <%= f.label :name, class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
           料理名
