@@ -14,7 +14,7 @@ class RepertoiresController < ApplicationController
     if @repertoire.save_with_ingredients(ingredient_names: ingredient_names)
       redirect_to repertoires_path(@repertoire), success: 'レパートリーを作成しました'
     else
-      flash.now['danger'] = 'レパートリーを作成できませんでした'
+      flash.now[:alert] = 'レパートリーを作成できませんでした'
       render :new, status: :unprocessable_entity
     end
   end
@@ -31,7 +31,7 @@ class RepertoiresController < ApplicationController
     if @repertoire.save_with_ingredients(ingredient_names: params.dig(:repertoire, :ingredient_names).split(',').uniq)
       redirect_to repertoire_path(@repertoire), success: 'レパートリーを更新しました'
     else
-      flash.now[:danger] = 'レパートリーを更新できませんでした'
+      flash.now[:alert] = 'レパートリーを更新できませんでした'
       render :edit
     end
   end
