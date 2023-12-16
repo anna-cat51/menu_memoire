@@ -1,3 +1,4 @@
+console.log("hello!")
 document.addEventListener("turbo:load", function () {
   document.getElementById("scrape-button").addEventListener("click", function (e) {
     e.preventDefault();
