@@ -11,10 +11,6 @@ class RepertoiresController < ApplicationController
   def create
     @repertoire = current_user.repertoires.create(repertoire_params)
     ingredient_names = params.dig(:repertoire, :ingredient_names).to_s.split(',').map(&:strip).uniq
-    
-    binding.pry
-    
-  
     if @repertoire.save_with_ingredients(ingredient_names: ingredient_names)
       redirect_to repertoires_path(@repertoire), success: 'レパートリーを作成しました'
     else
@@ -46,20 +42,18 @@ class RepertoiresController < ApplicationController
   end
 
   def scrape
-    @url = params.dig(:repertoire, :recipe_url)
-    
-    binding.pry
-    
-  
+    @url = params[:recipe_url]
     begin
       # スクレイピングして食材名のリストを取得
       @ingredient_names = scrape_page(@url)
   
       # スクレイピングした食材名のリストをセッションに保存する
       session[:scraped_ingredients] = @ingredient_names
+
+      render json: { ingredients: @ingredient_names }
   
       # スクレイピング成功の通知
-      redirect_to new_repertoire_path, notice: 'スクレイピングが完了しました。'
+
     rescue => e
       flash.now[:alert] = "スクレイピングに失敗しました: #{e.message}"
       render :index
@@ -84,9 +78,6 @@ class RepertoiresController < ApplicationController
   
     ingredients_container = doc.at('#ingredients_list')
     ingredient_names = ingredients_container.css('.ingredient_name .name').map(&:text)
-    
-    binding.pry
-    
 
     ingredient_names.uniq
 

@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   sessions: "sessions"
 }
 
-  resources :repertoires
-  post 'repertoires/scrape', to: 'repertoires#scrape'
+  resources :repertoires do
+    collection do
+      post :scrape
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

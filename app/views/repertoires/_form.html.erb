@@ -2,25 +2,14 @@
   <!-- Author: FormBold Team -->
   <!-- Learn More: https://formbold.com -->
   <div class="mx-auto w-full max-w-[550px]">
-    <%= form_with model: repertoire, url: repertoires_scrape_path, method: :post, local: true do |f| %>
+    <%= form_with url: scrape_repertoires_path, method: :post, local: true do |f| %>
       参考URL
       <%= f.text_field :recipe_url, placeholder: 'https://', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
-      <%= f.submit 'スクレイピング開始', class: 'btn btn-primary mb-3' %>
+      <%= button_tag 'スクレイピング開始', id: 'scrape-button', class: 'btn btn-primary mb-3' %>
     <% end %>
+
     <%= form_with model: repertoire, local: true do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-      <div class="mb-5">
-        <%= f.label :recipe_url, class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
-          参考URL
-        <% end %>
-        <%= f.text_field :recipe_url, placeholder: 'https://', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
-      </div>
-      <%= button_tag 'スクレイピング開始', data: { turbo_frame: "scraping_result" }, class: 'btn btn-primary mb-3' %>
-      <!-- Turbo Frameの追加 -->
-      <%= turbo_frame_tag "scraping_result" do %>
-        <!-- スクレイピング結果がここに挿入される -->
-      <% end %>
-
       <div class="mb-5">
         <%= f.label :name, class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
           料理名
