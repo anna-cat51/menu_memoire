@@ -7,11 +7,10 @@ Rails.application.routes.draw do
 }
 
   resources :repertoires
+  post 'repertoires/scrape', to: 'repertoires#scrape'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   post '/callback', to: 'linebot#callback'
 
-  get '/scrapers/index', to: 'scrapers#index'
-  post '/scrapers/scrape', to: 'scrapers#scrape'
 end
