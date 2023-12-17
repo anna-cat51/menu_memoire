@@ -1,25 +1,7 @@
 ja:
-  hello: "こんにちは"
-  activerecord:
-    models:
-      user: "ユーザー"
-      repertoire: "レパートリー"
-      ingredient: "食材"
-    attributes:
-      user:
-        email: "メールアドレス"
-        password: "パスワード"
-      repertoire:
-        name: "料理名"
-        recipe_url: "レシピURL"
-        user_id: "ユーザーID"
-      ingredient:
-        name: "食材"
-    errors:
-      models:
-        user:
-          attributes:
-            email:
-              blank: "メールアドレスを入力してください"
-            password:
-              blank: "パスワードを入力してください"
+  defaults:
+    repertoire: レパートリー
+    repertoire:
+      new: レパートリー登録
+      edit: レパートリー編集
+      destroy: レパートリー削除

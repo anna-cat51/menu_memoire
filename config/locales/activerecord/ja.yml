@@ -2,15 +2,23 @@ ja:
   activerecord:
     models:
       user: "ユーザー"
-      repertory: "レパートリー"
+      repertoire: "レパートリー"
       ingredient: "食材"
     attributes:
       user:
         email: "メールアドレス"
         password: "パスワード"
-        password_confirmation: "パスワード確認"
-        last_name: "姓"
-        first_name: "名"
-      repertory:
-        recipe_url: "レシピのURL"
+      repertoire:
         name: "料理名"
+        recipe_url: "レシピURL"
+        user_id: "ユーザーID"
+      ingredient:
+        name: "食材"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "メールアドレスを入力してください"
+            password:
+              blank: "パスワードを入力してください"
