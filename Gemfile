@@ -87,3 +87,8 @@ gem 'pry-rails'
 
 gem 'line-bot-api'
 gem 'nokogiri'
+
+# スクレイピング用
+gem 'mechanize'
+gem 'selenium-webdriver'
+gem 'nokogiri'
