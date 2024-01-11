@@ -1,5 +1,7 @@
 class RepertoiresController < ApplicationController
-  before_action :set_repertoire, only: %i[edit update destroy]
+  before_action :set_repertoire, only: [:show, :edit, :update, :destroy]
+  before_action :check_ownership, only: [:show, :edit, :update, :destroy]
+  
   def index
     @repertoires = Repertoire.of_user(current_user).includes(:user).order(created_at: :desc)
   end
@@ -68,6 +70,10 @@ class RepertoiresController < ApplicationController
 
   def set_repertoire
     @repertoire = current_user.repertoires.find(params[:id])
+  end
+
+  def check_ownership
+    redirect_to(root_url, alert: "このページにアクセスする権限がありません") unless @repertoire.user == current_user
   end
 
   # スクレイピングを行うメソッド
