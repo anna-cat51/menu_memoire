@@ -1,7 +1,7 @@
 class RepertoiresController < ApplicationController
   before_action :set_repertoire, only: %i[edit update destroy]
   def index
-    @repertoires = Repertoire.all.includes(:user).order(created_at: :desc)
+    @repertoires = Repertoire.of_user(current_user).includes(:user).order(created_at: :desc)
   end
 
   def new
