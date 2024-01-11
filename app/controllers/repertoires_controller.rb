@@ -15,7 +15,7 @@ class RepertoiresController < ApplicationController
     @repertoire = current_user.repertoires.create(repertoire_params)
     ingredient_names = params.dig(:repertoire, :ingredient_names).to_s.split(',').map(&:strip).uniq
     if @repertoire.save_with_ingredients(ingredient_names: ingredient_names)
-      redirect_to repertoires_path(@repertoire), success: 'レパートリーを作成しました'
+      redirect_to repertoires_path, success: 'レパートリーを作成しました'
     else
       flash.now[:alert] = 'レパートリーを作成できませんでした'
       render :new, status: :unprocessable_entity

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "line login test" do
+RSpec.feature "Repertoire Management", type: :feature do
   before do
     OmniAuth.config.test_mode = true
     OmniAuth.config.mock_auth[:line] = OmniAuth::AuthHash.new({
@@ -24,9 +24,17 @@ describe "line login test" do
     OmniAuth.config.test_mode = false
   end
 
-  describe "after login" do
-    it { expect(page).to have_link('ログアウト') }
-    # ログイン成功のメッセージが表示されることを確認
-    it { expect(page).to have_content('ログインしました。') }
+  scenario "User adds a new repertoire" do
+    # レパートリー追加ページへ遷移
+    visit new_repertoire_path
+
+    # フォームに情報を入力
+    fill_in "料理名", with: "肉じゃが"
+    fill_in "食材", with: "牛肉,玉ねぎ,しらたき,にんじん,じゃがいも"
+    click_button "登録する"
+    
+    # レパートリーが追加されたことを確認
+    expect(page).to have_content "レパートリーを作成しました"
+    expect(page).to have_content "肉じゃが"
   end
 end
