@@ -13,7 +13,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
       @profile.set_values(@omniauth)
       sign_in(:user, @profile)
     end
-    redirect_to root_path, success: t('.success')
+    redirect_to root_path, notice: t('.success')
   end
 
   def fake_email(uid, provider)

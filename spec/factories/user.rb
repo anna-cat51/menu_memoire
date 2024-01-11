@@ -1,5 +1,8 @@
 FactoryBot.define do
   factory :user do
-    name { "testuser1" }
+    email { "rspec_test@test.com" }
+    uid { "123" }
+    provider { "line" }
+    name { "anonymous" }
   end
 end

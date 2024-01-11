@@ -1,6 +1,7 @@
 class RepertoiresController < ApplicationController
   before_action :set_repertoire, only: [:show, :edit, :update, :destroy]
   before_action :check_ownership, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   
   def index
     @repertoires = Repertoire.of_user(current_user).includes(:user).order(created_at: :desc)
