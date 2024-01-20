@@ -74,7 +74,6 @@ group :test do
   gem 'faker'
   gem 'rspec-rails'
 end
-<<<<<<< HEAD
 
 gem 'devise'
 gem 'omniauth-line'
@@ -98,4 +97,4 @@ gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-performance', require: false
 =======
->>>>>>> 9108fe7 (Revert "Flash massages")
+>>>>>>> 6641d62 (Resolve Gemfile.lock conflicts)
