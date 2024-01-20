@@ -26,7 +26,7 @@
         <% end %>
         <%= f.text_field :ingredient_names, placeholder: '(,)カンマ区切りで入力', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
       </div>
-      <div class="container" data-controller='preview' data-no-turbolink>
+      <div data-controller='preview' data-no-turbolink>
         <div class="form-group">
           <%= f.label :repertoire_image, 'Upload file', class: 'block mb-2 text-sm font-medium text-gray-900 dark:text-white' %>
           <%= f.file_field :repertoire_image, class: 'block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400', accept: 'image/*' %>
