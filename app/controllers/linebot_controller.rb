@@ -12,12 +12,22 @@ class LinebotController < ApplicationController
     end
 
     events = client.parse_events_from(body)
-    events.each do |event|
+    events.each { |event|
       case event
       when Line::Bot::Event::Message
-        handle_message(event)
+        case event.type
+        when Line::Bot::Event::MessageType::Text
+          # 条件分岐
+          handle_text_message(event)
+
+          message = {
+            type: 'text',
+            text: @response
+          }
+          client.reply_message(event['replyToken'], message)
+        end
       end
-    end
+    }
 
     head :ok
   end
@@ -31,32 +41,71 @@ class LinebotController < ApplicationController
     end
   end
 
-  def handle_message(event)
-    case event.type
-    when Line::Bot::Event::MessageType::Text
-      handle_text_message(event)
-    end
-  end
-
   def handle_text_message(event)
     # LINEのイベントからユーザーIDを取得し、等しいUserを検索する
     @user = User.find_by(provider: 'line', uid: event['source']['userId'])
     text = event.message['text']
-    repertoire = Repertoire.find_by(name: repertoire_name, user_id: @user.id)
+                    .tr(" 　\r\n\t", '') # 空白の除去
+                    .tr('０-９', '0-9')  # 全角数字を半角に
 
+    case @user.status
+    when 'top'
+      show_search_options
+    when 'waiting_for_choice'
+      process_search_choice(text)
+    when 'waiting_for_input_for_repertoire'
+      @response = search_by_repertoire(text)
+      @user.update(status: 'top')
+    when 'waiting_for_input_for_ingredient'
+      @response = search_by_ingredient(text)
+      @user.update(status: 'top')
+    end
+    client.reply_message(event['replyToken'], { type: 'text', text: @response })
+  end
+
+  def show_search_options
+    @response = "何を検索する？\n1: 料理名から使っている材料を検索する\n2: 材料からなにが作れるか検索する"
+    @user.update(status: 'waiting_for_choice')
+  end
+
+  def process_search_choice(choice)
+    case choice
+    when '1'
+      @user.update(status: 'waiting_for_input_for_repertoire')
+      @response = "検索したい料理名を入力してください。"
+    when '2'
+      @user.update(status: 'waiting_for_input_for_ingredient')
+      @response = "検索したい材料名を入力してください。"
+    else
+      @response = "無効な選択です。もう一度選択してください。"
+      show_search_options
+    end
+  end
+
+  def search_by_repertoire(repertoire_name)
+    # 料理名から材料を検索するロジック
+    repertoire = Repertoire.find_by(name: repertoire_name, user_id: @user.id)
 
     if repertoire
       ingredients = repertoire.ingredients.pluck(:name)
-        if ingredients.present?
-          reply_message = "料理「#{repertoire_name}」に使用されている食材は #{ingredients.join(', ')} です。"
-        else
-          reply_message = "料理「#{repertoire_name}」に食材が登録されていません。"
-        end
+      if ingredients.present?
+        @response = "料理「#{repertoire_name}」に使用されている食材は #{ingredients.join(', ')} です。"
+      else
+        @response = "料理「#{repertoire_name}」に食材が登録されていません。"
+      end
     else
-      reply_message = "料理「#{repertoire_name}」は見つかりませんでした。"
+      @response = "料理「#{repertoire_name}」は見つかりませんでした。"
     end
-
-    client.reply_message(event['replyToken'], { type: 'text', text: reply_message })
   end
+  
+  def search_by_ingredient(ingredient_name)
+    # 材料名からつくれる料理を検索するロジック
+    repertoires = Repertoire.with_ingredient(ingredient_name).where(user: @user)
 
+    if repertoires.any?
+      @response = "#{ingredient_name} を使用した料理は #{repertoires.join(', ')} です。"
+    else
+      @response = "#{ingredient_name} を使用した料理は見つかりませんでした。"
+    end
+  end
 end

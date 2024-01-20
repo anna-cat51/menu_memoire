@@ -9,11 +9,9 @@ class User < ApplicationRecord
 
   enum status: {
     top: 0,
-    registration: 1,
-    show_next: 2,
-    add_day_of_week: 3,
-    add_cycle: 4,
-    add_notification: 5
+    waiting_for_choice: 1,
+    waiting_for_input_for_repertoire: 2,
+    waiting_for_input_for_ingredient: 3
   }
 
   def social_profile(provider)
