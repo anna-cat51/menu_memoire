@@ -45,12 +45,19 @@ class LinebotController < ApplicationController
     # LINEのイベントからユーザーIDを取得し、等しいUserを検索する
     @user = User.find_by(provider: 'line', uid: event['source']['userId'])
     text = event.message['text']
-                    .tr(" 　\r\n\t", '') # 空白の除去
-                    .tr('０-９', '0-9')  # 全角数字を半角に
 
     case @user.status
     when 'top'
-      show_search_options
+      case text
+      when /料理/
+        @user.update(status: 'waiting_for_input_for_repertoire')
+        @response = "検索したい料理名を入力してください。"
+      when /材料/
+        @user.update(status: 'waiting_for_input_for_ingredient')
+        @response = "検索したい材料名を入力してください。"
+      else
+        show_search_options
+      end
     when 'waiting_for_choice'
       process_search_choice(text)
     when 'waiting_for_input_for_repertoire'
