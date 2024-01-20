@@ -160,3 +160,4 @@ class SampleMessage
   }
 }
   end
+end
