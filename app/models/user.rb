@@ -7,6 +7,15 @@ class User < ApplicationRecord
 
   has_many :repertoires, dependent: :destroy
 
+  enum status: {
+    top: 0,
+    registration: 1,
+    show_next: 2,
+    add_day_of_week: 3,
+    add_cycle: 4,
+    add_notification: 5
+  }
+
   def social_profile(provider)
     social_profiles.select { |sp| sp.provider == provider.to_s }.first
   end
