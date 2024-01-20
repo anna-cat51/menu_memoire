@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 05b9eed (コンフリクト解消)
   root "tops#index"
 =======
 <<<<<<< HEAD
@@ -15,6 +18,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   get 'privacy_policy', to: 'tops#privacy_policy'
@@ -32,4 +36,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 >>>>>>> 9108fe7 (Revert "Flash massages")
+=======
+>>>>>>> 05b9eed (コンフリクト解消)
 end
