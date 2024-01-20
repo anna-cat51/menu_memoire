@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+<<<<<<< HEAD
   add_flash_types :success, :info, :warning, :danger
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -13,4 +14,6 @@ class ApplicationController < ActionController::Base
     flash[:alert] = 'このページは存在しないか、アクセスできません'
     redirect_to root_path # 例：ホームページにリダイレクト
   end
+=======
+>>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
 end

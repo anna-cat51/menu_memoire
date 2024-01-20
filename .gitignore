@@ -34,8 +34,11 @@
 !/app/assets/builds/.keep
 
 /node_modules
+<<<<<<< HEAD
 
 /.env
 
 /public/uploads
 /config/database.yml
+=======
+>>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113

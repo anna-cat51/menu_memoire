@@ -74,6 +74,7 @@ group :test do
   gem "factory_bot_rails"
   gem 'faker'
 end
+<<<<<<< HEAD
 
 gem 'devise'
 gem 'omniauth-line'
@@ -92,3 +93,5 @@ gem 'line-bot-api'
 gem 'mechanize'
 gem 'selenium-webdriver'
 gem 'nokogiri'
+=======
+>>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113

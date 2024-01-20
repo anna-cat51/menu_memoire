@@ -82,4 +82,9 @@ test:
 # for a full overview on how database connection configuration can be specified.
 #
 production:
+<<<<<<< HEAD
   url: <%= ENV['DATABASE_URL'] %>
+=======
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
+>>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
