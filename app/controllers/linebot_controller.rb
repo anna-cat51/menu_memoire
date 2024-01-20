@@ -44,7 +44,11 @@ class LinebotController < ApplicationController
 
     if repertoire
       ingredients = repertoire.ingredients.pluck(:name)
-      reply_message = "料理「#{repertoire_name}」に使用されている食材は #{ingredients.join(', ')} です。"
+        if ingredients.present?
+          reply_message = "料理「#{repertoire_name}」に使用されている食材は #{ingredients.join(', ')} です。"
+        else
+          reply_message = "料理「#{repertoire_name}」に食材が登録されていません。"
+        end
     else
       reply_message = "料理「#{repertoire_name}」は見つかりませんでした。"
     end
