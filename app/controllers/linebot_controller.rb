@@ -39,8 +39,11 @@ class LinebotController < ApplicationController
   end
 
   def handle_text_message(event)
-    repertoire_name = event.message['text']
-    repertoire = Repertoire.find_by(name: repertoire_name)
+    # LINEのイベントからユーザーIDを取得し、等しいUserを検索する
+    @user = User.find_by(provider: 'line', uid: event['source']['userId'])
+    text = event.message['text']
+    repertoire = Repertoire.find_by(name: repertoire_name, user_id: @user.id)
+
 
     if repertoire
       ingredients = repertoire.ingredients.pluck(:name)
