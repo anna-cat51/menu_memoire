@@ -96,7 +96,6 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
-<<<<<<< HEAD
     devise (4.9.3)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -127,11 +126,6 @@ GEM
     hashie (5.0.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
-=======
-    erubi (1.12.0)
-    globalid (1.2.1)
-      activesupport (>= 6.1)
->>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     io-console (0.6.0)
@@ -143,12 +137,9 @@ GEM
       activesupport (>= 5.0.0)
     jsbundling-rails (1.2.1)
       railties (>= 6.0.0)
-<<<<<<< HEAD
     json (2.6.3)
     jwt (2.7.1)
     line-bot-api (1.28.0)
-=======
->>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -178,13 +169,10 @@ GEM
     mini_mime (1.1.5)
     minitest (5.20.0)
     msgpack (1.7.2)
-<<<<<<< HEAD
     multi_xml (0.6.0)
     net-http-digest_auth (1.4.1)
     net-http-persistent (4.0.2)
       connection_pool (~> 2.2)
-=======
->>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
     net-imap (0.4.5)
       date
       net-protocol
@@ -197,7 +185,6 @@ GEM
     nio4r (2.5.9)
     nokogiri (1.15.4-aarch64-linux)
       racc (~> 1.4)
-<<<<<<< HEAD
     nokogiri (1.15.4-x86_64-linux)
       racc (~> 1.4)
     oauth2 (2.0.9)
@@ -221,8 +208,6 @@ GEM
       actionpack (>= 4.2)
       omniauth (~> 2.0)
     orm_adapter (0.5.0)
-=======
->>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
     pg (1.5.4)
     pry (0.14.2)
       coderay (~> 1.1)
@@ -273,7 +258,6 @@ GEM
     reline (0.4.0)
       io-console (~> 0.5)
     rexml (3.2.6)
-<<<<<<< HEAD
     rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
     rspec-expectations (3.12.3)
@@ -293,8 +277,6 @@ GEM
     rspec-support (3.12.1)
     ruby2_keywords (0.0.5)
     rubyntlm (0.6.3)
-=======
->>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
     rubyzip (2.3.2)
     selenium-webdriver (4.15.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -344,7 +326,6 @@ DEPENDENCIES
   carrierwave (~> 1.3)
   cssbundling-rails
   debug
-<<<<<<< HEAD
   devise
   dotenv-rails
   factory_bot_rails
@@ -357,19 +338,12 @@ DEPENDENCIES
   nokogiri
   omniauth-line
   omniauth-rails_csrf_protection
-=======
-  jbuilder
-  jsbundling-rails
->>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
   pg (~> 1.1)
   pry-rails
   puma (~> 5.0)
   rails (~> 7.0.8)
-<<<<<<< HEAD
   rails-i18n
   rspec-rails
-=======
->>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
   selenium-webdriver
   sprockets-rails
   stimulus-rails
