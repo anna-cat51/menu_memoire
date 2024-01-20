@@ -17,6 +17,11 @@
         <%= link_to user_line_omniauth_authorize_path, class: 'block mx-auto', method: :post do %>
           <%= image_tag 'btn_login_base.png' %>
         <% end %>
+
+        ログイン後、下記のQRコードを読み取って友達登録するとLINEから自分のレパートリーや材料を検索することができます
+        <div class="mx-auto">
+          <%= image_tag 'menumemoireQR.png' %>
+        </div>
       </div>
     </div>
   </div>
