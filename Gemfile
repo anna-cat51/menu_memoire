@@ -74,7 +74,6 @@ group :test do
   gem 'faker'
   gem 'rspec-rails'
 end
-<<<<<<< HEAD
 
 gem 'devise'
 gem 'omniauth-line'
@@ -97,7 +96,3 @@ gem 'selenium-webdriver'
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
 gem 'rubocop-performance', require: false
-=======
->>>>>>> 1fc8655 (rubocop導入)
-=======
->>>>>>> 9108fe7 (Revert "Flash massages")
