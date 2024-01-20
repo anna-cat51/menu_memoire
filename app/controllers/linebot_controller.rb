@@ -103,7 +103,8 @@ class LinebotController < ApplicationController
     repertoires = Repertoire.with_ingredient(ingredient_name).where(user: @user)
 
     if repertoires.any?
-      @response = "#{ingredient_name} を使用した料理は #{repertoires.join(', ')} です。"
+      repertoire_names = repertoires.map(&:name).join(', ')
+      @response = "#{ingredient_name} を使用した料理は #{repertoire_names} です。"
     else
       @response = "#{ingredient_name} を使用した料理は見つかりませんでした。"
     end
