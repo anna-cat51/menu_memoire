@@ -1,11 +1,6 @@
 Rails.application.routes.draw do
   root 'tops#index'
 
-  get "tops/create" => "tops#create"
-  get "tops/show" => "tops#show"
-  get "tops/assets" => "tops#assets"
-
-
   devise_for :users, controllers: {
     omniauth_callbacks: 'omniauth_callbacks',
     sessions: 'sessions'
