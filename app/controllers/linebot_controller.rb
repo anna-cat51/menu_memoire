@@ -2,17 +2,15 @@ require 'line/bot'
 
 class LinebotController < ApplicationController
   # callbackアクションのCSRFトークン認証を無効
-  protect_from_forgery :except => [:callback]
+  protect_from_forgery except: [:callback]
 
   def callback
     body = request.body.read
     signature = request.env['HTTP_X_LINE_SIGNATURE']
-    unless client.validate_signature(body, signature)
-      head :bad_request
-    end
+    head :bad_request unless client.validate_signature(body, signature)
 
     events = client.parse_events_from(body)
-    events.each { |event|
+    events.each do |event|
       case event
       when Line::Bot::Event::Message
         case event.type
@@ -27,7 +25,7 @@ class LinebotController < ApplicationController
           client.reply_message(event['replyToken'], message)
         end
       end
-    }
+    end
 
     head :ok
   end
@@ -36,8 +34,8 @@ class LinebotController < ApplicationController
 
   def client
     @client ||= Line::Bot::Client.new do |config|
-      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
-      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+      config.channel_secret = ENV.fetch('LINE_CHANNEL_SECRET')
+      config.channel_token = ENV.fetch('LINE_CHANNEL_TOKEN')
     end
   end
 
@@ -51,10 +49,10 @@ class LinebotController < ApplicationController
       case text
       when /料理/
         @user.update(status: 'waiting_for_input_for_repertoire')
-        @response = "検索したい料理名を入力してください。"
+        @response = '検索したい料理名を入力してください。'
       when /材料/
         @user.update(status: 'waiting_for_input_for_ingredient')
-        @response = "検索したい材料名を入力してください。"
+        @response = '検索したい材料名を入力してください。'
       else
         show_search_options
       end
@@ -79,12 +77,12 @@ class LinebotController < ApplicationController
     case choice
     when '1'
       @user.update(status: 'waiting_for_input_for_repertoire')
-      @response = "検索したい料理名を入力してください。"
+      @response = '検索したい料理名を入力してください。'
     when '2'
       @user.update(status: 'waiting_for_input_for_ingredient')
-      @response = "検索したい材料名を入力してください。"
+      @response = '検索したい材料名を入力してください。'
     else
-      @response = "無効な選択です。もう一度選択してください。"
+      @response = '無効な選択です。もう一度選択してください。'
       show_search_options
     end
   end
@@ -95,16 +93,16 @@ class LinebotController < ApplicationController
 
     if repertoire
       ingredients = repertoire.ingredients.pluck(:name)
-      if ingredients.present?
-        @response = "料理「#{repertoire_name}」に使用されている食材は #{ingredients.join(', ')} です。"
-      else
-        @response = "料理「#{repertoire_name}」に食材が登録されていません。"
-      end
+      @response = if ingredients.present?
+                    "料理「#{repertoire_name}」に使用されている食材は #{ingredients.join(', ')} です。"
+                  else
+                    "料理「#{repertoire_name}」に食材が登録されていません。"
+                  end
     else
       @response = "料理「#{repertoire_name}」は見つかりませんでした。"
     end
   end
-  
+
   def search_by_ingredient(ingredient_name)
     # 材料名からつくれる料理を検索するロジック
     repertoires = Repertoire.with_ingredient(ingredient_name).where(user: @user)
