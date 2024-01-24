@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   post '/callback', to: 'linebot#callback'
 
+  get 'privacy_policy', to: 'tops#privacy_policy'
+  get 'terms_of_use', to: 'tops#terms_of_use'
+
 end
