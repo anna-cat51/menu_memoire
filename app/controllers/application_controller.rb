@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   private
 
   def require_login
-    redirect_to login_path, warning: 'ログインしてください' if current_user.blank?
+    redirect_to root_path, warning: 'ログインしてください' if current_user.blank?
   end
   # エラー時の処理を定義するプライベートメソッド
   def record_not_found
