@@ -7,9 +7,15 @@ class RepertoiresController < ApplicationController
     @repertoires = Repertoire.of_user(current_user).includes(:user).order(created_at: :desc)
   end
 
+  def show
+    @repertoire = Repertoire.find(params[:id])
+  end
+
   def new
     @repertoire = Repertoire.new
   end
+
+  def edit; end
 
   def create
     @repertoire = current_user.repertoires.create(repertoire_params)
@@ -21,12 +27,6 @@ class RepertoiresController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
-  def show
-    @repertoire = Repertoire.find(params[:id])
-  end
-
-  def edit; end
 
   def update
     @repertoire.assign_attributes(repertoire_params)

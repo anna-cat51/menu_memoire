@@ -32,7 +32,9 @@ class RepertoireImageUploader < CarrierWave::Uploader::Base
   # version :thumb do
   #   process resize_to_fit: [50, 50]
   # end
-  def default_url # デフォルトの画像ファイル
+
+  # デフォルトの画像ファイル
+  def default_url
     'sample.png'
   end
 

@@ -3,17 +3,19 @@ require 'rails_helper'
 RSpec.feature 'Repertoire Management', type: :feature do
   before do
     OmniAuth.config.test_mode = true
-    OmniAuth.config.mock_auth[:line] = OmniAuth::AuthHash.new({
-      provider: 'line',
-      uid: '123',
-      info: {
-        nickname: 'anonymous'
-      },
-      credentials: {
-        token: 'mock_token',
-        refresh_token: 'mock_refresh_token'
+    OmniAuth.config.mock_auth[:line] = OmniAuth::AuthHash.new(
+      {
+        provider: 'line',
+        uid: '123',
+        info: {
+          nickname: 'anonymous'
+        },
+        credentials: {
+          token: 'mock_token',
+          refresh_token: 'mock_refresh_token'
+        }
       }
-    })
+    )
 
     visit user_line_omniauth_authorize_path(:line)
     # コールバックのパスをシミュレート
