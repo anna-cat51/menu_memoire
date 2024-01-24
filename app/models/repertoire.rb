@@ -9,7 +9,7 @@ class Repertoire < ApplicationRecord
   # 検索用のスコープ
   scope :with_ingredient, ->(ingredient_name) { joins(:ingredients).where(ingredients: { name: ingredient_name }) }
   scope :name_contain, ->(word) { where('name LIKE ?', "%#{word}%") }
-  scope :of_user, ->(user) { where(user: user) }
+  scope :of_user, ->(user) { where(user:) }
 
   # 食材をDBに保存する操作
   def save_with_ingredients(ingredient_names:)
