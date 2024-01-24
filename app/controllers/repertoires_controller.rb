@@ -1,7 +1,10 @@
 class RepertoiresController < ApplicationController
-  before_action :set_repertoire, only: %i[edit update destroy]
+  before_action :set_repertoire, only: [:show, :edit, :update, :destroy]
+  before_action :check_ownership, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  
   def index
-    @repertoires = Repertoire.all.includes(:user).order(created_at: :desc)
+    @repertoires = Repertoire.of_user(current_user).includes(:user).order(created_at: :desc)
   end
 
   def new
@@ -12,7 +15,7 @@ class RepertoiresController < ApplicationController
     @repertoire = current_user.repertoires.create(repertoire_params)
     ingredient_names = params.dig(:repertoire, :ingredient_names).to_s.split(',').map(&:strip).uniq
     if @repertoire.save_with_ingredients(ingredient_names: ingredient_names)
-      redirect_to repertoires_path(@repertoire), success: 'レパートリーを作成しました'
+      redirect_to repertoires_path, success: 'レパートリーを作成しました'
     else
       flash.now[:alert] = 'レパートリーを作成できませんでした'
       render :new, status: :unprocessable_entity
@@ -68,6 +71,10 @@ class RepertoiresController < ApplicationController
 
   def set_repertoire
     @repertoire = current_user.repertoires.find(params[:id])
+  end
+
+  def check_ownership
+    redirect_to(root_url, alert: "このページにアクセスする権限がありません") unless @repertoire.user == current_user
   end
 
   # スクレイピングを行うメソッド

@@ -1,16 +1,6 @@
 <link rel="stylesheet" href="https://unpkg.com/flowbite@1.4.4/dist/flowbite.min.css" />
-<div class="navbar bg-body-light pb-5">
+<header class="navbar bg-body-light pb-5">
   <div class="navbar-start">
-    <div class="dropdown">
-      <label tabindex="0" class="btn btn-ghost btn-circle">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
-      </label>
-      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><%= link_to (t 'defaults.toppage'), "#" %></li>
-        <li><%= link_to (t 'defaults.about'), "#" %></li>
-        <li><a></a></li>
-      </ul>
-    </div>
   </div>
   <div class="navbar-center">
     <%= link_to root_path do %>
@@ -18,25 +8,28 @@
     <% end %>
   </div>
   <div class="navbar-end">
+    <div class="dropdown dropdown-hover px-8">
+      <div tabindex="0" role="button" class="btn m-1">レパートリー</div>
+      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+        <li><%= link_to Repertoire.model_name.human, repertoires_path %></li>
+        <li><%= link_to (t 'defaults.repertoire.new'), new_repertoire_path %></li>
+      </ul>
+    </div>
     <div class="dropdown dropdown-end">
-        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-          <div class="w-10 rounded-full">
-            <img alt="Tailwind CSS Navbar component" src="/assets/testicon.png">
-          </div>
-        </label>
-        <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-          <li><%= link_to Repertoire.model_name.human, repertoires_path %></li>
-          <li><%= link_to (t 'defaults.repertoire.new'), new_repertoire_path %></li>
-          <li><%= link_to (t 'defaults.profile'), "#" %></li>
-          <li><%= link_to (t 'defaults.logout'), destroy_user_session_path, data: { turbo_method: :delete } %></li>
-        </ul>
-      </div>
+      <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+        <div class="w-10 rounded-full">
+          <img alt="Tailwind CSS Navbar component" src="/assets/testicon.png">
+        </div>
+      </label>
+      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+        <li><%= link_to (t 'defaults.logout'), destroy_user_session_path, data: { turbo_method: :delete } %></li>
+      </ul>
     </div>
   </div>
-</div>
+</header>
 
-<!-- This is an example component -->
-<div class="searchbar bg-body-light pb-4">
+<!-- 検索バー -->
+<%# <div class="searchbar bg-body-light pb-4">
   <div class="max-w-2xl mx-auto">
     <form class="flex items-center">
       <label for="simple-search" class="sr-only">Search</label>
@@ -53,4 +46,4 @@
       </button>
     </form>
   </div>
-</div>
+</div> %>
