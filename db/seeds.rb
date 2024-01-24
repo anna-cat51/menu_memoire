@@ -43,17 +43,17 @@ encrypted_password = User.new(password: 'password').encrypted_password
 end
 
 ingredients = Ingredient.create!([
-  { name: 'ひき肉'},
-  { name: '玉ねぎ'},
-  { name: 'にんじん'},
-  { name: 'じゃがいも'},
-  { name: '卵'},
-  { name: 'ケチャップ'},
-  { name: '鶏肉'},
-  { name: '豚肉'},
-  { name: 'キャベツ'},
-  { name: 'カレールー'}
-])
+                                   { name: 'ひき肉' },
+                                   { name: '玉ねぎ' },
+                                   { name: 'にんじん' },
+                                   { name: 'じゃがいも' },
+                                   { name: '卵' },
+                                   { name: 'ケチャップ' },
+                                   { name: '鶏肉' },
+                                   { name: '豚肉' },
+                                   { name: 'キャベツ' },
+                                   { name: 'カレールー' }
+                                 ])
 
 repertoire_ingredients_data = [
   { repertoire: Repertoire.first, ingredient: ingredients[0] },
@@ -63,7 +63,7 @@ repertoire_ingredients_data = [
   { repertoire: Repertoire.second, ingredient: ingredients[2] },
   { repertoire: Repertoire.second, ingredient: ingredients[3] },
   { repertoire: Repertoire.second, ingredient: ingredients[7] },
-  { repertoire: Repertoire.second, ingredient: ingredients[9] },
+  { repertoire: Repertoire.second, ingredient: ingredients[9] }
   # 以下同様に続く
 ]
 RepertoireIngredient.create(repertoire_ingredients_data)
