@@ -5,3 +5,4 @@ ja:
       new: レパートリー登録
       edit: レパートリー編集
       destroy: レパートリー削除
+    logout: ログアウト
