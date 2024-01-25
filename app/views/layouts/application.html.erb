@@ -7,11 +7,9 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   </head>
 
-<<<<<<< HEAD
   <body class="bg-body-dark font-noto-sans flex flex-col min-h-screen">
     <% if user_signed_in? %>
       <%= render "shared/header" %>
@@ -19,9 +17,6 @@
       <%= render "shared/before_login_header" %>
     <% end %>
     <%= render 'shared/flash_message' %>
-=======
-  <body>
->>>>>>> 0348fbfde0827f1a432af27f62fe22ff6c4c7113
     <%= yield %>
   </body>
 </html>
