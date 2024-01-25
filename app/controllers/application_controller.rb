@@ -1,4 +1,16 @@
 class ApplicationController < ActionController::Base
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> adcbcae (Revert "Flash massages")
+=======
+>>>>>>> 9cbe56d (Revert "Flash massages")
+=======
+>>>>>>> bd5a3db (Revert "Flash massages")
   add_flash_types :success, :info, :warning, :danger
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
@@ -14,4 +26,21 @@ class ApplicationController < ActionController::Base
     flash[:alert] = 'このページは存在しないか、アクセスできません'
     redirect_to root_path # 例：ホームページにリダイレクト
   end
+=======
+>>>>>>> 9108fe7 (Revert "Flash massages")
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9108fe7 (Revert "Flash massages")
+=======
+>>>>>>> adcbcae (Revert "Flash massages")
+=======
+>>>>>>> 9108fe7 (Revert "Flash massages")
+=======
+>>>>>>> 9cbe56d (Revert "Flash massages")
+=======
+=======
+>>>>>>> 9108fe7 (Revert "Flash massages")
+>>>>>>> bd5a3db (Revert "Flash massages")
 end
