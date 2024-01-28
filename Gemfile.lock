@@ -425,7 +425,7 @@ DEPENDENCIES
   line-bot-api
   mechanize
   mini_magick
-  mysql2
+  mysql2 (>= 0.5.2)
   nokogiri
   omniauth-line
   omniauth-rails_csrf_protection

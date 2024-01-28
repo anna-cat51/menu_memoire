@@ -100,4 +100,4 @@ gem 'rubocop-performance', require: false
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false 
 
-gem 'mysql2', group: :production
+gem 'mysql2', '>= 0.5.2'
