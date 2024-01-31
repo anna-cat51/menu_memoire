@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  before_action :auto_login_in_development
 
   private
 
@@ -13,5 +14,14 @@ class ApplicationController < ActionController::Base
     # ユーザーにエラーメッセージを表示する、または別のページにリダイレクトする
     flash[:alert] = 'このページは存在しないか、アクセスできません'
     redirect_to root_path # 例：ホームページにリダイレクト
+  end
+
+  def auto_login_in_development
+    return unless Rails.env.development?
+
+    # ここで指定したユーザーでログインします。
+    # 例えば、最初のユーザーでログインする場合:
+    user = User.first
+    sign_in(user) if user
   end
 end
