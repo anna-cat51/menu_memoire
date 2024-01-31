@@ -1,18 +1,19 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  host: db
-  username: postgres
+  adapter: mysql2
+  encoding: utf8mb4
+  username: myapp
   password: password
+  host: db
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
-  database: menu_memoire-db-1
+  database: myapp_development
 
 test:
   <<: *default
-  database: menu_memoire-db-1
+  database: myapp_test
 
 production:
+  <<: *default
   url: <%= ENV['DATABASE_URL'] %>
