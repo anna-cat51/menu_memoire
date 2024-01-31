@@ -1,4 +1,5 @@
 class Repertoire < ApplicationRecord
+  has_one :search_content
   belongs_to :user
   has_many :repertoire_ingredients, dependent: :destroy
   has_many :ingredients, through: :repertoire_ingredients
@@ -6,6 +7,10 @@ class Repertoire < ApplicationRecord
 
   validates :name, presence: true, length: { maximum: 255 }
   validates :recipe_url, length: { maximum: 255 }
+
+  after_save :repertoire_update_search_content
+  after_destroy :repertoire_remove_search_content
+
   # 検索用のスコープ
   scope :with_ingredient, ->(ingredient_name) { joins(:ingredients).where(ingredients: { name: ingredient_name }) }
   scope :name_contain, ->(word) { where('name LIKE ?', "%#{word}%") }
@@ -28,4 +33,18 @@ class Repertoire < ApplicationRecord
     # NOTE: pluckだと新規作成失敗時に値が残らない(返り値がnilになる)
     ingredients.map(&:name).join(',')
   end
+
+  def repertoire_update_search_content
+    child = SearchContent.find_or_initialize_by(repertoire_id: self.id)
+    
+    binding.pry
+    
+    child.origin_repertoire_name = self.name
+    child.save
+  end
+
+  def repertoire_remove_search_content
+    self.search_content.try(:destroy)
+  end
+
 end
