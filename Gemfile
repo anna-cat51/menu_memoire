@@ -100,3 +100,7 @@ gem 'fog-aws'
 gem "aws-sdk-s3", require: false 
 
 gem 'mysql2', '>= 0.5.2'
+
+gem 'natto'
+gem "ngram", "~> 1.0.0"
+gem 'kaminari'

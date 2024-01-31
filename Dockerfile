@@ -1,9 +1,10 @@
 FROM ruby:3.2.2
 
 RUN apt-get update -qq \
- && apt-get install -y nodejs postgresql-client npm vim \
- && rm -rf /var/lib/apt/lists/* \
- && npm install --global yarn
+  && apt-get install -y nodejs postgresql-client npm vim \
+  && apt-get install -y libmecab2 libmecab-dev mecab mecab-ipadic mecab-ipadic-utf8 mecab-utils \
+  && rm -rf /var/lib/apt/lists/* \
+  && npm install --global yarn
 
 RUN mkdir /myapp
 WORKDIR /myapp
