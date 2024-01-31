@@ -20,7 +20,12 @@ class Repertoire < ApplicationRecord
   def save_with_ingredients(ingredient_names:)
     ActiveRecord::Base.transaction do
       # 存在しない食材があれば保存する
-      self.ingredients = ingredient_names.map { |name| Ingredient.find_or_initialize_by(name: name.strip) }
+      self.ingredients = ingredient_names.map do |name|
+        ingredient = Ingredient.find_or_initialize_by(name: name.strip)
+        ingredient.save if ingredient.new_record? || ingredient.changed?
+        update_search_content_for_ingredient(ingredient)
+        ingredient
+      end
       save!
     end
     true
@@ -36,15 +41,22 @@ class Repertoire < ApplicationRecord
 
   def repertoire_update_search_content
     child = SearchContent.find_or_initialize_by(repertoire_id: self.id)
-    
-    binding.pry
-    
     child.origin_repertoire_name = self.name
-    child.save
+    unless child.save
+      Rails.logger.error "SearchContent save failed: #{child.errors.full_messages.join(', ')}"
+    end    
   end
 
   def repertoire_remove_search_content
     self.search_content.try(:destroy)
+  end
+
+  def update_search_content_for_ingredient(ingredient)
+    search_content = SearchContent.find_or_initialize_by(ingredient_id: ingredient.id)
+    search_content.origin_ingredient_name = ingredient.name
+    unless search_content.save
+      Rails.logger.error "Failed to save search content: #{search_content.errors.full_messages.join(', ')}"
+    end
   end
 
 end
