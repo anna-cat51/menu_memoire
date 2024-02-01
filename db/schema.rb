@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_31_081637) do
+ActiveRecord::Schema[7.0].define(version: 2024_02_01_082448) do
   create_table "ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -45,6 +45,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_31_081637) do
     t.string "repertoire_name"
     t.text "origin_ingredient_name"
     t.text "ingredient_name"
+    t.string "repertoire_name_yomi"
+    t.string "repertoire_name_ngram"
+    t.string "ingredient_name_ngram"
     t.index ["ingredient_id"], name: "index_search_contents_on_ingredient_id"
     t.index ["repertoire_id"], name: "index_search_contents_on_repertoire_id"
   end
