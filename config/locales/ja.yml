@@ -13,3 +13,4 @@ ja:
     line:
       success: "LINE認証に成功しました"
     success: "認証に成功しました"
+  no_result: "何も見つかりませんでした"

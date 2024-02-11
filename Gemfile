@@ -58,8 +58,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
-  gem 'pg', '~> 1.1'
-
+  
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -100,4 +99,8 @@ gem 'rubocop-performance', require: false
 gem 'fog-aws'
 gem "aws-sdk-s3", require: false 
 
-gem 'mysql2', group: :production
+gem 'mysql2', '>= 0.5.2'
+
+gem 'natto'
+gem "ngram", "~> 1.0.0"
+gem 'kaminari'

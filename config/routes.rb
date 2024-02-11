@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
+  resources :searches, only: [:index]
   root "tops#index"
-
   devise_for :users, controllers: {
   omniauth_callbacks: "omniauth_callbacks",
   sessions: "sessions"

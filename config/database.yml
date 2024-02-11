@@ -1,22 +1,20 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
-  host: db
-  username: postgres
+  adapter: mysql2
+  encoding: utf8
+  username: myapp
   password: password
+  host: db
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  collation: utf8_general_ci
 
 development:
   <<: *default
-  database: menu_memoire-db-1
+  database: myapp_development
 
 test:
   <<: *default
-  database: menu_memoire-db-1
+  database: myapp_test
 
 production:
-  adapter: mysql2
-  encoding: utf8mb4
-  collation: utf8mb4_unicode_ci
+  <<: *default
   url: <%= ENV['DATABASE_URL'] %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
