@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   add_flash_types :success, :info, :warning, :danger
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   before_action :auto_login_in_development
+  before_action :set_search
 
   private
 
@@ -23,5 +24,9 @@ class ApplicationController < ActionController::Base
     # 例えば、最初のユーザーでログインする場合:
     user = User.first
     sign_in(user) if user
+  end
+
+  def set_search
+    @search = Search.new(word: params[:word])
   end
 end

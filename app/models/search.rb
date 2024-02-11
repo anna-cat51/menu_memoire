@@ -7,8 +7,4 @@ class Search
   def repertoires
     Repertoire.joins(:search_content).merge(SearchContent.search(word))
   end
-
-  def ingredients
-    Ingredient.joins(:search_content).merge(SearchContent.search(word))
-  end
 end
