@@ -15,6 +15,10 @@ class Repertoire < ApplicationRecord
   scope :with_ingredient, ->(ingredient_name) { joins(:ingredients).where(ingredients: { name: ingredient_name }) }
   scope :name_contain, ->(word) { where('name LIKE ?', "%#{word}%") }
   scope :of_user, ->(user) { where(user:) }
+  # Ingredient ID に基づいて関連する Repertoire を取得するスコープ
+  scope :for_ingredient_ids, ->(ids) {
+    joins(:repertoire_ingredients).where(repertoire_ingredients: { ingredient_id: ids }).distinct
+  }
 
   # 食材をDBに保存する操作
   def save_with_ingredients(ingredient_names:)
