@@ -8,7 +8,7 @@
     <% end %>
   </div>
   <div class="navbar-end">
-    <%= link_to user_line_omniauth_authorize_path, class: 'block mx-auto', method: :post do %>
+    <%= button_to user_line_omniauth_authorize_path, method: :post, class: 'block mx-auto' do %>
       <%= image_tag 'btn_login_base.png' %>
     <% end %>
   </div>
