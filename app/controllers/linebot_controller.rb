@@ -89,26 +89,27 @@ class LinebotController < ApplicationController
 
   def search_by_repertoire(repertoire_name)
     # 料理名から材料を検索するロジック
-    repertoire = Repertoire.find_by(name: repertoire_name, user_id: @user.id)
+    search_contents = SearchContent.search(repertoire_name)
+    repertoire_ids = search_contents.pluck(:repertoire_id).uniq.compact
+  
+    ingredients = Ingredient.where(id: ingredient_ids).where(user: @user)
 
-    if repertoire
-      ingredients = repertoire.ingredients.pluck(:name)
-      @response = if ingredients.present?
-                    "料理「#{repertoire_name}」に使用されている食材は #{ingredients.join(', ')} です。"
-                  else
-                    "料理「#{repertoire_name}」に食材が登録されていません。"
-                  end
+    if ingredients.any?
+      ingredient_names = ingredients.pluck(:name).join(', ')
+      @response = "「#{repertoire_name}」に使用されている食材は #{ingredient_names} です。"
     else
-      @response = "料理「#{repertoire_name}」は見つかりませんでした。"
+      @response = "「#{repertoire_name}」に関連する食材は見つかりませんでした。"
     end
   end
 
   def search_by_ingredient(ingredient_name)
     # 材料名からつくれる料理を検索するロジック
-    repertoires = Repertoire.with_ingredient(ingredient_name).where(user: @user)
+    search_contents = SearchContent.search(ingredient_name)
+    repertoire_ids = search_contents.pluck(:repertoire_id).uniq.compact
+    repertoires = Repertoire.where(id: repertoire_ids).where(user: @user)
 
     if repertoires.any?
-      repertoire_names = repertoires.map(&:name).join(', ')
+      repertoire_names = repertoires.pluck(:name).join(', ')
       @response = "#{ingredient_name} を使用した料理は #{repertoire_names} です。"
     else
       @response = "#{ingredient_name} を使用した料理は見つかりませんでした。"

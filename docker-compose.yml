@@ -2,40 +2,49 @@ version: "3"
 services:
   db:
     image: mysql
-    # dbのユーザー名とパスワードでこれが無いとdbが起動できなかった
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: myapp_development
       MYSQL_USER: myapp
       MYSQL_PASSWORD: password
-    # 無くても動くけど指定しておくとdocker-composeを停止してもdbの内容が永続化されるため、指定することが多いと思われる
-    # https://matsuand.github.io/docs.docker.jp.onthefly/storage/volumes/
     volumes:
       - mysql_volume:/var/lib/mysql
-    # 無くても動くが指定しておくとコンテナ停止時にサービスが再起動してくれる
-    # https://docs.docker.jp/v19.03/config/container/start-containers-automatically.html
     restart: always
     ports:
       - "3306:3306"
+
+  db_staging:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: myapp_staging
+      MYSQL_USER: myapp_staging
+      MYSQL_PASSWORD: staging_password
+    volumes:
+      - mysql_staging_volume:/var/lib/mysql
+    restart: always
+    ports:
+      - "3307:3306"
+
   web:
     build: .
-    # tmp/pids/server.pidが残ってたら `A server is already running. ~~` のエラーでrailsを起動できないので事前に消してから、`rails sever` する
     command: bash -c "rm -f tmp/pids/server.pid && bin/dev"
-    # 上記のdbイメージで指定したユーザー名とパスワードをrails側でも指定するため環境変数に設定。
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: myapp_development
       MYSQL_USER: myapp
       MYSQL_PASSWORD: password
-    # ホストのカレントディレクトリ(.)とイメージ内の/myappディレクトリを同期させている
     volumes:
       - .:/myapp
     ports:
       - "3000:3000"
-    restart: always # コンテナが停止すると常に再起動
-    tty: true # 疑似ターミナル (pseudo-TTY) を割り当て。https://docs.docker.jp/compose/compose-file/index.html#tty
-    stdin_open: true # サービス コンテナに標準入力を割り当てて実行するよう設定(https://docs.docker.jp/compose/compose-file/index.html#stdin-open)。
+    restart: always
+    tty: true
+    stdin_open: true
     depends_on:
       - db
+      - db_staging
+
 volumes:
   mysql_volume:
+  mysql_staging_volume:
