@@ -11,14 +11,14 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2024_02_01_103632) do
-  create_table "ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "ingredients", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_ingredients_on_name", unique: true
   end
 
-  create_table "repertoire_ingredients", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "repertoire_ingredients", charset: "utf8mb3", force: :cascade do |t|
     t.bigint "repertoire_id", null: false
     t.bigint "ingredient_id", null: false
     t.datetime "created_at", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_103632) do
     t.index ["repertoire_id"], name: "index_repertoire_ingredients_on_repertoire_id"
   end
 
-  create_table "repertoires", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "repertoires", charset: "utf8mb3", force: :cascade do |t|
     t.string "name"
     t.string "recipe_url"
     t.bigint "user_id", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_01_103632) do
     t.index ["repertoire_name_ngram", "ingredient_name_ngram"], name: "search_contents_ngram_fulltext_index", type: :fulltext
   end
 
-  create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", charset: "utf8mb3", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
