@@ -70,7 +70,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'rspec-rails'
 end
 
@@ -104,3 +103,5 @@ gem 'mysql2', '>= 0.5.2'
 gem 'natto'
 gem "ngram", "~> 1.0.0"
 gem 'kaminari'
+
+gem 'faker'
