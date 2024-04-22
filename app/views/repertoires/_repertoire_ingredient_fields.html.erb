@@ -1,0 +1,7 @@
+<div class="nested-fields">
+  <div class="field">
+    <%= f.label :ingredient_name, class: "mb-2 inline-block text-sm text-gray-800 sm:text-base" %>
+    <%= f.text_field :ingredient_name, class: "w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" %>
+  </div>
+  <%= link_to_remove_association 'x', f, class: 'btn btn-danger' %>
+</div>

@@ -5,7 +5,7 @@ import "./preview";
 import "./scrape";
 
 import "./src/jquery"
-// import "@nathanvda/cocoon";
+import "@nathanvda/cocoon";
 
 $(function () {
   console.log("hello world");
