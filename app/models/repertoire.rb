@@ -3,6 +3,7 @@ class Repertoire < ApplicationRecord
   belongs_to :user
   has_many :repertoire_ingredients, dependent: :destroy
   has_many :ingredients, through: :repertoire_ingredients
+  accepts_nested_attributes_for :ingredients, allow_destroy: true
   mount_uploader :repertoire_image, RepertoireImageUploader
 
   validates :name, presence: true, length: { maximum: 255 }
@@ -34,9 +35,11 @@ class Repertoire < ApplicationRecord
     end
     true
   # トランザクション内でのエラーが発生した場合falseを返す
-  rescue StandardError
+  rescue StandardError => e
+    Rails.logger.error "Error saving with ingredients: #{e.message}"
     false
   end
+
 
   def ingredient_names
     # NOTE: pluckだと新規作成失敗時に値が残らない(返り値がnilになる)
