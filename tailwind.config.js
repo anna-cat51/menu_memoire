@@ -26,5 +26,21 @@ module.exports = {
       customOrange: "#F39800", // 押す前の色
       customOrangeHover: "#cc7a00", // カーソルを合わせた後の色（暗めに設定）
     },
-  },
-};
+    extend: {
+      animation: {
+        slideRightToLeft: "slideRightToLeft 10s infinite"
+      },
+      keyframes: {
+        "bg-pan-right": {
+          "0%": {
+              "background-position": "0% 50%"
+          },
+          to: {
+              "background-position": "100% 50%"
+          }
+        }
+      }
+    }
+  }
+}
+
