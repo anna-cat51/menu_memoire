@@ -6,9 +6,7 @@
           <%= image_tag @repertoire.repertoire_image.url, loading: "lazy", class:"h-full w-full object-cover object-center" %>
         </div>
       </div>
-
       <div class="md:pt-8">
-
         <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6 md:text-left"><%= @repertoire.name %></h1>
         <%= render 'crud_menus', repertoire: @repertoire %>
         <div class="card flex-auto bg-base-100 shadow-xl mt-14">
