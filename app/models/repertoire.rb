@@ -34,12 +34,22 @@ class Repertoire < ApplicationRecord
       save!
     end
     true
-  # トランザクション内でのエラーが発生した場合falseを返す
-  rescue StandardError => e
-    Rails.logger.error "Error saving with ingredients: #{e.message}"
+  rescue StandardError
     false
   end
 
+  # _destroyが"1"に設定された食材を削除する処理
+  def destroy_with_ingredients(ingredients_attributes:)
+    ActiveRecord::Base.transaction do
+      # _destroyが"1"に設定された食材を削除する処理を追加
+      ingredients_attributes.each do |_, attrs|
+        if attrs["_destroy"] == "1"
+          repertoire_ingredient = self.repertoire_ingredients.find_by(ingredient_id: attrs["id"])
+          repertoire_ingredient&.destroy
+        end
+      end
+    end
+  end
 
   def ingredient_names
     # NOTE: pluckだと新規作成失敗時に値が残らない(返り値がnilになる)
@@ -63,7 +73,8 @@ class Repertoire < ApplicationRecord
     search_content.origin_ingredient_name = ingredient.name
     unless search_content.save
       Rails.logger.error "Failed to save search content: #{search_content.errors.full_messages.join(', ')}"
+      raise ActiveRecord::Rollback # トランザクションをロールバック
     end
   end
-
+  
 end

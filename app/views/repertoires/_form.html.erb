@@ -25,10 +25,13 @@
           <%= f.label :ingredient_names, class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
             取得した食材
           <% end %>
-          <%= f.text_field :ingredient_names, placeholder: '(,)カンマ区切りで入力', class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
+          <%= f.text_field :ingredient_names, class: 'w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md' %>
         </div>
       <% end %>
       <div class="mb-5">
+        <%= f.label :name, class: 'mb-3 block text-base font-medium text-[#07074D]' do %>
+          食材<span class="required text-red-500 mx-1" aria-hidden="true">*</span>
+        <% end %>
         <%= f.fields_for :ingredients do |ingredient_form| %>
           <%= render "ingredient_fields", f: ingredient_form %>
         <% end %>

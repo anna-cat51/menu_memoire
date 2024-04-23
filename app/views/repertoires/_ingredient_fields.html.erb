@@ -1,6 +1,10 @@
-<div class="nested-fields">
-  <div class="field">
-    <%= f.label :name, "食材" %>
-    <%= f.text_field :name %>
-  <%= link_to_remove_association 'x', f, class: 'btn btn-danger' %>
+<% ingredient_form ||= f %>
+<div class="nested-fields flex items-center space-x-4 mb-5">
+  <div class="flex-grow">
+    <%= f.text_field :name, class: 'py-3 px-6 w-full input input-bordered join-item rounded-md border border-[#e0e0e0] bg-white text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md'%>
+  </div>
+  <div>
+    <%= ingredient_form.hidden_field :_destroy %>
+    <%= link_to_remove_association '×', f, class: 'btn btn-square btn-outline' %>
+  </div>
 </div>

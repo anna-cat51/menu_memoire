@@ -19,7 +19,6 @@ class RepertoiresController < ApplicationController
 
   def create
     @repertoire = current_user.repertoires.new(repertoire_params_without_ingredient_names)
-
     if @repertoire.save_with_ingredients(ingredient_names: extracted_ingredient_names)
       redirect_to repertoires_path, success: 'レパートリーを作成しました'
     else
@@ -29,9 +28,9 @@ class RepertoiresController < ApplicationController
   end
 
   def update
-    
-    @repertoire.assign_attributes(repertoire_params_without_ingredient_names)
+    ingredients_attributes = params[:repertoire][:ingredients_attributes]
     if @repertoire.save_with_ingredients(ingredient_names: extracted_ingredient_names)
+      @repertoire.destroy_with_ingredients(ingredients_attributes: ingredients_attributes)
       redirect_to repertoire_path(@repertoire), success: 'レパートリーを更新しました'
     else
       flash.now[:alert] = 'レパートリーを更新できませんでした'
