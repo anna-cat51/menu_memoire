@@ -1,13 +1,13 @@
 <ul class="inline-flex sm:ml-auto sm:mt-0 mt-2 justify-end sm:justify-starts float-right">
   <!-- Edit Button -->
-  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded">
+  <button class="btn btn-warning">
     <%= link_to edit_repertoire_path(repertoire), id: "button-edit-#{repertoire.id}" do %>
       編集
     <% end %>
   </button>
 
   <!-- Delete Button -->
-  <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">
+  <button class="btn btn-error">
     <%= link_to repertoire_path(repertoire), data: { "turbo-method": :delete, turbo_confirm: "削除しますか？" } do %>
       削除
     <% end %>
