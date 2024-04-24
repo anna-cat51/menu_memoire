@@ -1,6 +1,5 @@
 <% flash.each do |type, message| %>
-  <div class="<%= flash_class(type) %> container mx-auto p-5 leading-normal rounded-lg" role="alert">
+  <div role="alert" class="alert alert-<%= type %> container mx-auto">
     <span><%= message %></span>
   </div>
 <% end %>
-
