@@ -105,5 +105,3 @@ gem "ngram", "~> 1.0.0"
 gem 'kaminari'
 
 gem 'faker'
-
-gem 'cocoon'

@@ -18,8 +18,9 @@ class RepertoiresController < ApplicationController
   def edit; end
 
   def create
-    @repertoire = current_user.repertoires.new(repertoire_params_without_ingredient_names)
-    if @repertoire.save_with_ingredients(ingredient_names: extracted_ingredient_names)
+    @repertoire = current_user.repertoires.create(repertoire_params)
+    ingredient_names = params.dig(:repertoire, :ingredient_names).to_s.split(',').map(&:strip).uniq
+    if @repertoire.save_with_ingredients(ingredient_names:)
       redirect_to repertoires_path, success: 'レパートリーを作成しました'
     else
       flash.now[:alert] = 'レパートリーを作成できませんでした'
@@ -28,9 +29,8 @@ class RepertoiresController < ApplicationController
   end
 
   def update
-    ingredients_attributes = params[:repertoire][:ingredients_attributes]
-    if @repertoire.save_with_ingredients(ingredient_names: extracted_ingredient_names)
-      @repertoire.destroy_with_ingredients(ingredients_attributes: ingredients_attributes)
+    @repertoire.assign_attributes(repertoire_params)
+    if @repertoire.save_with_ingredients(ingredient_names: params.dig(:repertoire, :ingredient_names).split(',').uniq)
       redirect_to repertoire_path(@repertoire), success: 'レパートリーを更新しました'
     else
       flash.now[:alert] = 'レパートリーを更新できませんでした'
@@ -63,27 +63,10 @@ class RepertoiresController < ApplicationController
 
   private
 
-  def repertoire_params_without_ingredient_names
-    repertoire_params.except(:ingredient_names)
-  end
-
-  def extracted_ingredient_names
-    ingredient_names = params.dig(:repertoire, :ingredient_names).to_s.split(',').map(&:strip).uniq
-    ingredients_from_attributes = params.dig(:repertoire, :ingredients_attributes)&.values&.map { |v| v[:name] }&.uniq || []
-    ingredient_names + ingredients_from_attributes
-  end
-
   def repertoire_params
-    params.require(:repertoire).permit(
-      :name,
-      :recipe_url,
-      :repertoire_image,
-      :repertoire_image_cache,
-      :ingredient_names,
-      ingredients_attributes: [:id, :name, :_destroy]
-    )
+    params.require(:repertoire).permit(:name, :recipe_url, :repertoire_image, :repertoire_image_cache,
+                                       ingredient_ids: [])
   end
-
 
   def set_repertoire
     @repertoire = current_user.repertoires.find(params[:id])

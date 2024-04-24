@@ -3,7 +3,6 @@ class Repertoire < ApplicationRecord
   belongs_to :user
   has_many :repertoire_ingredients, dependent: :destroy
   has_many :ingredients, through: :repertoire_ingredients
-  accepts_nested_attributes_for :ingredients, allow_destroy: true
   mount_uploader :repertoire_image, RepertoireImageUploader
 
   validates :name, presence: true, length: { maximum: 255 }
@@ -34,21 +33,9 @@ class Repertoire < ApplicationRecord
       save!
     end
     true
+  # トランザクション内でのエラーが発生した場合falseを返す
   rescue StandardError
     false
-  end
-
-  # _destroyが"1"に設定された食材を削除する処理
-  def destroy_with_ingredients(ingredients_attributes:)
-    ActiveRecord::Base.transaction do
-      # _destroyが"1"に設定された食材を削除する処理を追加
-      ingredients_attributes.each do |_, attrs|
-        if attrs["_destroy"] == "1"
-          repertoire_ingredient = self.repertoire_ingredients.find_by(ingredient_id: attrs["id"])
-          repertoire_ingredient&.destroy
-        end
-      end
-    end
   end
 
   def ingredient_names
@@ -73,8 +60,7 @@ class Repertoire < ApplicationRecord
     search_content.origin_ingredient_name = ingredient.name
     unless search_content.save
       Rails.logger.error "Failed to save search content: #{search_content.errors.full_messages.join(', ')}"
-      raise ActiveRecord::Rollback # トランザクションをロールバック
     end
   end
-  
+
 end
