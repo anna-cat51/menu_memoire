@@ -4,7 +4,7 @@ class RepertoiresController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @repertoires = Repertoire.of_user(current_user).includes(:user).order(created_at: :desc)
+    @repertoires = Repertoire.of_user(current_user).includes(:user).order(created_at: :desc).page(params[:page])
   end
 
   def show
