@@ -11,12 +11,12 @@
         <div class="grid gap-4 sm:grid-cols-1 md:gap-6 lg:grid-cols-1 xl:grid-cols-2 xl:gap-8">
           <% if @repertoires.present? %>
             <%= render @repertoires %>
-            <%= paginate @repertoires %>
           <% else %>
             <p><%= t('.no_result') %></p>
           <% end %>
         </div>
       </div>
+      <%= paginate @repertoires %>
     </section>
   </div>
 </div>
