@@ -8,20 +8,10 @@
   </div>
   <div class="navbar-end">
     <div class="dropdown dropdown-hover px-8">
-      <div tabindex="0" role="button" class="btn m-1">レパートリー</div>
-      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+      <div tabindex="0" role="button" class="btn m-1 bg-yellow-400 rounded-lg border border-yellow-400 hover:bg-yellow-600 focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:bg-yellow-600 dark:hover:bg-yellow-400 dark:focus:ring-yellow-600 active:bg-yellow-600">レパートリー</div>
+      <ul tabindex="0" class="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 ">
         <li><%= link_to Repertoire.model_name.human, repertoires_path %></li>
         <li><%= link_to (t 'defaults.repertoire.new'), new_repertoire_path %></li>
-      </ul>
-    </div>
-    <div class="dropdown dropdown-end">
-      <div class="btn btn-ghost btn-circle avatar">
-        <div class="w-10 rounded-full">
-          <%= image_tag "default.png" %>
-        </div>
-      </div>
-      <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li><%= link_to (t 'defaults.logout'), destroy_user_session_path, data: { turbo_method: :delete } %></li>
       </ul>
     </div>
   </div>
