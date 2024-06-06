@@ -12,7 +12,7 @@
         <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6 md:text-left"><%= @repertoire.name %></h1>
         <%= render 'crud_menus', repertoire: @repertoire %>
         <div class="card flex-auto bg-base-100 shadow-xl mt-14">
-          <h2 class="mb-5 text-center text-xl font-semibold text-gray-800  mt-5 sm:text-2xl md:mb-4 md:text-left">材料</h2>
+          <h2 class="mb-5 text-center text-xl font-semibold text-gray-800  mt-5 sm:text-2xl md:mb-4 md:text-left">　　　材料</h2>
           <div class="ml-10">
             <% @repertoire.ingredients.each do |ingredient| %>
               <li class="mb-6 text-gray-500 sm:text-lg md:mb-8"><%= ingredient.name %></li>
