@@ -39,3 +39,4 @@
 /.env.staging
 
 /public/uploads
+/vendor
