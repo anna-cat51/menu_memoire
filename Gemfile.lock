@@ -201,6 +201,7 @@ GEM
       net-smtp
     marcel (1.0.2)
     matrix (0.4.2)
+    mecab (0.996)
     mechanize (2.10.0)
       addressable (~> 2.8)
       base64
@@ -441,6 +442,7 @@ DEPENDENCIES
   jsbundling-rails
   kaminari
   line-bot-api
+  mecab (= 0.996)
   mechanize
   mini_magick
   mysql2 (>= 0.5.2)
@@ -467,3 +469,5 @@ DEPENDENCIES
 RUBY VERSION
    ruby 3.2.2p53
 
+BUNDLED WITH
+   2.4.10
